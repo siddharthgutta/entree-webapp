@@ -1,0 +1,34 @@
+<h3 class="text-center">Add Item Modifier</h3>
+<div class="analytics-main col-md-offset-2 col-md-8">
+    <div ng-show="formSubmit">
+        <div id="formAlert" class="alert alert-success text-center" ng-show="formSubmit && formSuccess">  
+          <strong>Success!</strong> Item has been created.
+        </div>
+        <div id="formAlert" class="alert alert-danger text-center" ng-show="formSubmit && !formSuccess">  
+            <strong>Error!</strong> Please fill out form again.
+        </div>
+    </div>
+    <form role="form">
+        <div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Modifier name" ng-model="addMenuItemForm.itemName" required>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input type="text" class="form-control" id="price" name="price" placeholder="Price" ng-model="addMenuItemForm.itemPrice" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label ng-repeat="menuItem in menuItems">
+                    <input type="checkbox" ng-model="menuItem.checked">
+                    <span class="spacing">{{ menuItem.name }}</span>
+                </label>
+            </div>
+            <div class="text-center">
+                <button type="button" id="submit" name="submit" class="btn btn-danger" ng-click="cancelModifier()">Cancel</button>
+                <button type="button" id="submit" name="submit" class="btn btn-default" ng-click="createModifier()">Create</button>
+            </div>
+        </div>
+    </form>
+</div>

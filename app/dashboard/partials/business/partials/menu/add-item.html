@@ -1,0 +1,44 @@
+<h3 class="text-center">Add Menu Item</h3>
+<div class="analytics-main col-md-offset-2 col-md-8">
+    <div ng-show="formSubmit">
+        <div id="formAlert" class="alert alert-success text-center" ng-show="formSubmit && formSuccess">  
+          <strong>Success!</strong> Item has been created.
+        </div>
+        <div id="formAlert" class="alert alert-danger text-center" ng-show="formSubmit && !formSuccess">  
+            <strong>Error!</strong> Please fill out form again.
+        </div>
+    </div>
+    <form role="form">
+        <div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Name" ng-model="addMenuItemForm.itemName" required>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input type="text" class="form-control" id="price" name="price" placeholder="Price" ng-model="addMenuItemForm.itemPrice" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <select class="form-control" ng-model="addMenuItemForm.itemMenu" required>
+                    <option value="" disabled selected>Menu</option>
+                    <option ng-repeat="menu in menus" ng-selected="{{menuCategory == addMenuItemForm.itemCategory}}" value="{{ menu.id }}">{{ menu.attributes.name }}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select class="form-control" ng-model="addMenuItemForm.itemCategory" required>
+                    <option value="" disabled selected>Category</option>
+                    <option ng-repeat="menuCategory in menuCategories" ng-selected="{{menuCategory == addMenuItemForm.itemCategory}}" value="{{ menuCategory.id }}">{{ menuCategory.name }}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <textarea type="textarea" class="form-control" id="description" name="description" placeholder="Description" maxlength="280" rows="5" ng-model="addMenuItemForm.itemDescription" required></textarea>
+                <p class="text-center">{{ addMenuItemForm.itemDescription.length }}/280</p> 
+            </div>
+            <div class="text-center">
+                <button type="button" id="submit" name="submit" class="btn btn-danger" ng-click="cancelItem()">Cancel</button>
+                <button type="button" id="submit" name="submit" class="btn btn-default" ng-click="createItem()">Create</button>
+            </div>
+        </div>
+    </form>
+</div>

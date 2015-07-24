@@ -1,0 +1,117 @@
+<div>
+	<h3 class="text-center">Orders Data Table</h3>
+	<div class="analytics-main">
+		<div class="col-md-12 report-bar">
+			<form class="form-inline">
+				<div class="form-group">
+					<div class="input-group">
+						<div class="input-group-btn" dropdown>
+							<button type="button" class="btn btn-default dropdown-toggle first-dropdown" dropdown-toggle>{{ search.filter.name }}
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<li class="options"><a ng-click="OrdersDataTableCtrl.setNewFilter('Anything')">Anything</a></li>
+								<li class="options"><a ng-click="OrdersDataTableCtrl.setNewFilter('Order')">Order</a></li>
+								<li class="options"><a ng-click="OrdersDataTableCtrl.setNewFilter('Party')">Party</a></li>
+								<li class="options"><a ng-click="OrdersDataTableCtrl.setNewFilter('Menu Item')">Menu Item</a></li>
+								<li class="options"><a ng-click="OrdersDataTableCtrl.setNewFilter('Modifiers')">Modifiers</a></li>
+								<li class="options"><a ng-click="OrdersDataTableCtrl.setNewFilter('Seat')">Seat</a></li>
+								<li class="options"><a ng-click="OrdersDataTableCtrl.setNewFilter('Notes')">Notes</a></li>
+							</ul>
+						</div>
+						<div class="input-group-btn" dropdown>
+							<button type="button" class="btn btn-default dropdown-toggle second-dropdown" dropdown-toggle>{{ search.equivalencyType }}
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<li class="options"><a ng-click="search.equivalencyType = 'Equal to'">Equal to</a></li>
+								<li class="options" ng-show="OrdersDataTableCtrl.validEquivalencyType()"><a ng-click="search.equivalencyType = 'Less than'">Less than</a></li>
+								<li class="options" ng-show="OrdersDataTableCtrl.validEquivalencyType()"><a ng-click="search.equivalencyType = 'Greater than'">Greater than</a></li>
+							</ul>
+						</div>
+						<input type="text" class="form-control" placeholder="Search term" ng-model="search.value" size="28">
+					</div>
+				</div>
+				<div class="form-group dates">
+					from
+					<input type="date" class="form-control start-date" datepicker-popup ng-model="startDate" max-date="OrdersDataTableCtrl.maxDate" date-disabled="disabled(date, mode)" close-text="Close" ng-change="startDateChange(this.startDate)" />
+					to
+					<input type="date" class="form-control end-date" datepicker-popup ng-model="endDate" max-date="maxDate" date-disabled="disabled(date, mode)" close-text="Close" ng-change="endDateChange(this.endDate)" />
+				</div>
+				<div class="form-group">
+					<div class="btn-group" ng-show="selectedArray.length === 0" popover="Please select rows to export!" popover-trigger="mouseenter">
+						<button type="button" class="btn btn-default dropdown-toggle" ng-disabled="true" class="btn btn-default">Export <span class="caret"></span></button>
+					</div>
+				    <div class="btn-group" dropdown ng-hide="selectedArray.length === 0">
+				      <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="!(selectedArray.length > 0)">
+				        Export <span class="caret"></span>
+				      </button>
+				      <ul class="dropdown-menu" role="menu">
+				        <li class="options"><a ng-csv="OrdersDataTableCtrl.getTableArray()" csv-header="OrdersDataTableCtrl.getHeaders()" filename="{{ filename }}.csv" field-separator="{{separator}}">To CSV</a></li>
+				      </ul>
+				    </div>
+				</div>
+			</form>
+		</div>
+
+		<div class="clearfix"></div>
+
+		<div class="table-responsive">
+			<table class="table table-bordred table-striped">
+				<thead>
+					<th><input type="checkbox" ng-model="selectedAll" ng-click="OrdersDataTableCtrl.checkAll()"></th>
+					<th ng-click="OrdersDataTableCtrl.sortChange('id')" class="pointer">Order
+						<span ng-show="sortType == 'id'" ng-class="{ 'caret-reversed': sortReverse}" class="caret"></span>
+					</th>
+					<th ng-click="OrdersDataTableCtrl.sortChange('party.id')" class="pointer">Party
+						<span ng-show="sortType == 'party.id'" ng-class="{ 'caret-reversed': sortReverse}" class="caret"></span>
+					</th>
+					<th ng-click="OrdersDataTableCtrl.sortChange('menuItem.name')" class="pointer">Menu Item
+						<span ng-show="sortType == 'menuItem.name'" ng-class="{ 'caret-reversed': sortReverse}" class="caret"></span>
+					</th>
+					<th ng-click="OrdersDataTableCtrl.sortChange('menuItemModifiers')" class="pointer">Modifiers
+						<span ng-show="sortType == 'menuItemModifiers'" ng-class="{ 'caret-reversed': sortReverse}" class="caret"></span>
+					</th>
+					<th ng-click="OrdersDataTableCtrl.sortChange('seat')" class="pointer">Seat
+						<span ng-show="sortType == 'seat'" ng-class="{ 'caret-reversed': sortReverse}" class="caret"></span>
+					</th>
+					<th ng-click="OrdersDataTableCtrl.sortChange('notes')" class="pointer">Notes
+						<span ng-show="sortType == 'notes'" ng-class="{ 'caret-reversed': sortReverse}" class="caret"></span>
+					</th>
+					<th ng-click="OrdersDataTableCtrl.sortChange('createdAt')" class="pointer">Date
+						<span ng-show="sortType == 'createdAt'" ng-class="{ 'caret-reversed': sortReverse}" class="caret"></span>
+					</th>
+				</thead>
+				<tbody>
+					<tr dir-paginate="orders in filteredOrders | orderBy:sortType:sortReverse | itemsPerPage: numEntries">
+						<td><input type="checkbox" ng-model="orders.value"></td>
+						<td>{{ orders.id }}</td>
+						<td>{{ orders.party.id }}</td>
+						<td>{{ orders.menuItem.name }}</td>
+						<td>{{ orders.menuItemModifiers }}</td>
+						<td>{{ orders.seat }}</td>
+						<td>{{ orders.notes }}</td>
+						<td>{{ orders.createdAt | date: 'short' }}</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="clearfix"></div>
+			<p class="pull-left table-details"><b>Total results:</b> {{ filteredOrders.length }} </p>
+			<p class="pull-left table-details" ng-show="selectedArray.length > 0">&nbsp;| <b>Selected results:</b> {{ selectedArray.length }}</p>
+			<p class="pull-right table-details">Show
+				<select class="form-control entry-select" ng-model="numEntries">
+					<option>10</option>
+					<option>25</option>
+					<option>50</option>
+					<option>100</option>
+				</select>
+				entries
+			</p>
+			<div class="clearfix"></div>
+			<div class="text-center">
+				<dir-pagination-controls></dir-pagination-controls>
+			</div>	
+		</div>
+	</div>
+</div>

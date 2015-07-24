@@ -1,0 +1,28 @@
+<h3 class="text-center">Add Menu Category</h3>
+<div class="analytics-main col-md-offset-2 col-md-8">
+    <div ng-show="formSubmit">
+        <div id="formAlert" class="alert alert-success text-center" ng-show="formSubmit && formSuccess">  
+          <strong>Success!</strong> Menu category has been created.
+        </div>
+        <div id="formAlert" class="alert alert-danger text-center" ng-show="formSubmit && !formSuccess">  
+            <strong>Error!</strong> Please fill out form again.
+        </div>
+    </div>
+    <form role="form">
+        <div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Category name" ng-model="addMenuCategoryForm.categoryName" required>
+            </div>
+            <div class="form-group">
+                <select class="form-control" ng-model="addMenuCategoryForm.categoryMenu" required>
+                    <option value="" disabled selected>Menu</option>
+                    <option ng-repeat="menu in menus" ng-selected="{{menu == addMenuCategoryForm.categoryMenu}}" value="{{ menu.id }}">{{ menu.attributes.name }}</option>
+                </select>
+            </div>
+            <div class="text-center">
+                <button type="button" id="submit" name="submit" class="btn btn-danger" ng-click="cancelMenuCategory()">Cancel</button>
+                <button type="button" id="submit" name="submit" class="btn btn-default" ng-click="createMenuCategory()">Create</button>
+            </div>
+        </div>
+    </form>
+</div>

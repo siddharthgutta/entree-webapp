@@ -1,0 +1,380 @@
+/*
+* Custom stylesheet for analytics app
+*/
+
+.first-dropdown {
+	border-right: 0;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.second-dropdown {
+	border-left: 0;
+	border-right: 0;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.dates {
+	margin-right: 4px;
+	margin-left: 4px;
+}
+
+.start-date {
+	margin-left: 4px;
+	margin-right: 4px;
+}
+
+.end-date {
+	margin-left: 4px;
+}
+
+.report-bar {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.report-bar .end {
+	margin-right: 0;
+}
+
+.table {
+	margin-bottom: 15px;
+}
+
+.table-details {
+	line-height: 34px;
+  	white-space: nowrap;
+	height: 34px;
+}
+
+.pagination {
+	margin-top: 0;
+	margin-bottom: 22px;
+}
+
+.entry-select {
+	width: inherit;
+	display: inline-block;
+}
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+
+.summary {
+	margin-top: 16px;
+}
+
+.login-form {
+	color: #FFF;
+	width: 282px;
+}
+
+.login-form .forgot {
+	color: #FFF;
+	margin-top: 14px;
+	font-size: 14px;
+}
+
+.login-form .forgot:hover {
+	color: #eee;
+}
+
+a {
+	text-decoration: none !important;
+	cursor: pointer;
+}
+
+li.options {
+	letter-spacing: 0;
+}
+
+li.options:hover {
+	background-color: #eee;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+h2 {
+	font-size: 24px;
+}
+
+#top-nav:before {
+	background-color: #262626;
+	height: 10px;
+}
+
+#top-nav:after {
+	background-color: #262626;
+	height: 10px;
+}
+
+#top-nav {
+	font-weight: 700;
+	font-size: 14px;
+	background-color: #333;
+	letter-spacing: 0.0625em;
+}
+
+.navbar-brand {
+	padding: 15px 28px;
+}
+
+.navbar-brand img {
+	height: 32px;
+	position: relative;
+    top: 50%;
+    transform: translateY(-50%); /* add browser-prefixes */
+}
+
+body {
+	background-color: white;
+	font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.navbar {
+	margin-bottom:0px;
+	border-radius: 0;
+	border: none;
+	position: fixed;
+	width: 100%;
+}
+
+.active {
+	background-color: transparent;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+	background-color: transparent;
+}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+	background-color: transparent;
+}
+
+.dropdown-menu>li>a:focus,.dropdown-menu>li>a:hover {
+	background-color: transparent;
+}
+
+.huge {
+	font-size: 38px;
+	font-weight: 700;
+}
+
+.nav>li>a {
+	padding: 15px 30px;
+	-webkit-transition: color 150ms ease;
+    -moz-transition: color 150ms ease;
+    -o-transition: color 150ms ease;
+    -ms-transition: color 150ms ease;
+    transition: color 150ms ease;
+}
+
+.nav>li>a:hover,
+.nav>li>a:active,
+.nav>li>a:focus {
+    color: #333;
+	-webkit-transition: color 150ms ease;
+    -moz-transition: color 150ms ease;
+    -o-transition: color 150ms ease;
+    -ms-transition: color 150ms ease;
+    transition: color 150ms ease;
+}
+
+.sign-in {
+	font-weight: 700;
+}
+
+.nav {
+	font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+	text-transform: uppercase;
+}
+
+.dropdown-menu {
+	font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 400;
+	text-transform: none;
+}
+
+.alert {
+	padding: 10px;
+	margin-bottom: 15px;
+}
+
+.clear-newline {
+	display:inline;
+}
+
+.nav-fix {
+	padding: 0 32px;
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+	background-color: #FFF;
+}
+
+.navbar-inverse .navbar-toggle .icon-bar {
+	background-color: #9d9d9d;
+}
+
+.analytics-main {
+	padding-left: 0;
+	padding-right: 0;
+	padding-top: 15px;
+	padding-bottom: 0;
+}
+
+.text-center {
+	text-align: center;
+}
+
+p.restaurant-select {
+	margin-top: 20px;
+}
+
+select.restaurant-select {
+	margin-left: auto;
+	margin-right: auto;
+	width: 320px;
+}
+
+select.charts-select {
+	margin-left: auto;
+	margin-right: auto;
+	width: 160px;
+	margin-top: 20px;
+}
+
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+}
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
+
+.welcome {
+	margin-top: -70px;
+}
+
+.caret.caret-reversed {
+    border-top-width: 0;
+    border-bottom: 4px solid #000000;
+}
+
+.pointer {
+	cursor:pointer;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none; /* Webkit */
+	-moz-user-select: none;    /* Firefox */
+	-ms-user-select: none;     /* IE 10  */
+
+	/* Currently not supported in Opera but will be soon */
+	-o-user-select: none;
+	user-select: none;  
+}
+
+#dashboard {
+	padding-top: 70px;
+}
+
+.active-restaurant {
+	font-weight: bold !important;
+}
+
+.h1, .h2, .h3, h1, h2, h3 {
+	margin-bottom: 20px;
+}
+
+.login-header, .login-header {
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+	background-color: #1479de;
+	border-color: #1479de;
+}
+
+.pagination>li>a, .pagination>li>span {
+	color: #1479de;
+}
+
+.form-control:focus {
+	border: 1px solid;
+	border-color: #ccc;
+	box-shadow: none;
+}
+
+.padding-clear {
+	padding: 0;
+}
+
+#login {
+	background: url(../../assets/img/icon-background.png) no-repeat center center fixed; 
+  	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+}
+
+.modal-header {
+	padding-bottom: 5px;
+}
+
+.modal-footer {
+    	padding: 0;
+	}
+    
+.modal-footer .btn-group button {
+	height:40px;
+	border-top-left-radius : 0;
+	border-top-right-radius : 0;
+	border: none;
+	border-right: 1px solid #ddd;
+}
+	
+.modal-footer .btn-group:last-child > button {
+	border-right: 0;
+}
+
+.modal-title {
+	margin-top: 4px;
+	margin-bottom: 10px;
+}
+
+.modal-footer {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right: 16px;
+}
+
+.form-inline {
+	margin-bottom: 15px;
+}
+
+.form-group label {
+	font-weight: inherit;
+}
+
+label .spacing {
+	margin-right: 16px;
+}

@@ -1,0 +1,277 @@
+
+/* Colors */
+
+.white{
+    color:#fff;
+}
+
+.black{
+	color:#444;
+}
+
+.grey{
+	color:#bbb;
+}
+
+.red{
+	color:#f75353;
+}
+
+.green{
+	color:#51d466;
+}
+
+.lblue{
+	color:#32c8de;
+}
+
+.blue{
+	color:#609cee;
+}
+
+.brown{
+	color:#c27256;
+}
+
+.pink{
+	color:#eb76cb;
+}	
+
+.orange{
+	color:#f7a253;
+}
+
+.yellow{
+	color:#f4e375;
+}
+
+.purple{
+	color:#cb79e6;
+}
+
+.violet{
+	color:#9427e1 !important;
+}
+.br-white{
+    background:#fff !important;
+}
+
+.br-black{
+	background:#444 !important;
+}
+
+.br-grey{
+	background:#bbb !important;
+}
+
+.br-red{
+	background:#f75353 !important;
+}
+
+.br-green{
+	background:#51d466 !important;
+}
+
+.br-lblue{
+	background:#32c8de !important;
+}
+
+.br-blue{
+	background:#609cee !important;
+}
+
+.br-brown{
+	background:#c27256 !important;
+}
+
+.br-pink{
+	background:#eb76cb !important;
+}
+
+.br-orange{
+	background:#f7a253 !important;
+}
+
+.br-yellow{
+	background:#ead54e !important;
+}
+
+.br-purple{
+	background:#cb79e6 !important;
+}
+
+.br-violet{
+	background:#9427e1 !important;
+}
+
+.br-dpink{
+	background:#d33caa !important;
+}
+
+.br-dgreen{
+	background:#5eb26c !important;
+}
+
+.config ul{
+	text-align:center;
+	margin-top:40px;
+	margin-bottom:30px;
+}
+
+.config ul  li{
+	margin:10px 20px;
+	display:inline-block;
+	padding:10px 40px 10px 40px;
+	position: relative;
+	border: 1px solid #ccc;
+	height:110px;
+	width:250px;
+	background:#fafafa;
+	border-radius:5px;
+}
+
+.config ul  li.active:after, .config ul  li.active:before {
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.config ul  li.active:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-top-color: #fff;
+	border-width: 15px;
+	margin-left: -15px;
+}
+
+.config ul  li.active:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-top-color: #ccc;
+	border-width: 17px;
+	margin-left: -17px;
+}
+
+.config ul  li h5{
+	font-size:18px;
+}
+
+.config ul  li p{
+	line-height:21px;
+	font-size:14px;
+}
+
+.config ul li:hover{
+	background:#fff;
+	border: 1px solid #ccc;
+}
+
+.config ul li a{
+	color:#777;
+	text-decoration:none !important;
+}
+
+.config .tab-content .config-one-item{
+	text-align:center;
+	margin-bottom:20px;
+	margin-top:20px;
+
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	animation-duration: 1s;
+    animation-delay:0s;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-delay: 0s;
+    -moz-animation-duration: 1s;
+    -moz-animation-delay:0s;
+    -ms-animation-duration: 1s;
+    -ms-animation-delay: 0s;
+    -o-animation-duration: 1s;    
+    -o-animation-delay: 0s;
+}
+
+.config .tab-content .config-one-item i{
+	font-size:40px;
+}
+
+.config .tab-content .config-one-item h2{
+	font-family: 'Open Sans', sans-serif;
+	font-size:40px;
+	font-weight:normal;
+	margin-top:10px;
+	margin-bottom:10px;
+	line-height:60px;
+}
+
+.config .tab-content .config-one-item  p{
+	font-size:14px;
+	font-weight:normal;
+	color:#fff;
+	background:#f75353;
+	padding:5px 10px 5px 10px;
+	border-radius:5px;
+}
+
+.config .tab-pane .config-two-item{
+	margin-top:15px;
+	margin-bottom:15px;
+}
+
+.config .tab-pane .config-two-item p{
+	margin:0px;
+	color:#777;
+	font-size:18px;
+	font-weight:bold;
+}
+
+.config .tab-pane .config-two-item  p{
+	line-height:20px;
+	margin-bottom:10px;
+	max-width:250px;
+	font-size:14px;
+}
+
+.config .tab-pane .config-two-item a{
+	color:#777;
+}
+
+.config .tab-pane .config-two-item i{
+	display:inline-block;
+	height:35px;
+	width:25px;
+	border-radius:100px;
+	line-height:30px;
+	font-size:15px;
+} 
+
+.config .tab-pane .config-three-item {
+	margin-top:40px;
+	margin-bottom:40px;
+	border:1px solid #ccc;
+	padding:7px 7px 7px 7px;
+	border-radius:5px;
+	max-width:300px;
+}
+
+.config .tab-pane .config-three-item img{
+	border-radius:2px;
+}
+
+.config .tab-pane .config-three-item p{
+	text-align:center;
+	margin-top:10px;
+	font-size:20px;
+}
+
+.config .tab-pane .config-three-item i{
+	display:inline-block;
+	height:30px;
+	width:30px;
+	line-height:30px;
+	text-align:center;
+	border-radius:100px;
+	color:#fff;
+	font-size:15px;
+}  

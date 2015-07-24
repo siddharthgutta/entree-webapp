@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="analytics-app">
+<head>
+  <title>Login - Entrée Analytics</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/css/main.css">
+
+</head>
+<body>
+  <div id="login">
+    <div class="container">
+      <div class="vertical-center">
+        <div class="center-block">
+          <!-- log in form -->
+          <div class="login-form" ng-show="!passwordResetForm">
+            <h2 class="text-center login-header">ENTRÉE ANALYTICS</h2>
+            <!-- alerts -->
+            <div id="formAlert" class="alert text-center" ng-hide="invalidLogin">  
+              <strong>Hello!</strong> Please sign in below.
+            </div>
+            <div id="formAlert" class="alert alert-danger text-center" ng-show="invalidLogin">  
+              <strong>Error!</strong> Invalid username/password.
+            </div>
+            <!-- end of alerts -->
+            <div>
+              <form role="form" name="loginForm" ng-submit="logIn(loginForm) && loginForm.$valid">
+                <div class="form-group input-group">
+                  <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                  </span>
+                  <input type="email" class="form-control" id="username" placeholder="Email Address" ng-model="loginForm.username" required autofocus>
+                </div>
+                <div class="form-group input-group">
+                  <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-lock"></i>
+                  </span>
+                  <input type="password" class="form-control" id="password" placeholder="Password" ng-model="loginForm.password" required>
+                </div>
+                <button type="submit" class="btn btn-default center-block sign-in">Sign In</button>
+                <a href="" ng-click="togglePasswordReset()"><p class="forgot text-center">Forgot your password?</p></a>
+              </form>
+            </div>
+          </div>
+          <!-- password reset form -->
+          <div class="login-form" ng-show="passwordResetForm">
+            <h2 class="text-center login-header">ENTRÉE ANALYTICS</h2>
+            <!-- alerts -->
+            <div id="formAlert" class="alert text-center" ng-hide="emailSent || invalidLogin">  
+              <strong>Forgot password?</strong> Please enter email.
+            </div>
+            <div id="formAlert" class="alert alert-success text-center" ng-show="emailSent">  
+              <strong>Success!</strong> New password sent.
+            </div>
+            <div id="formAlert" class="alert alert-danger text-center" ng-show="invalidLogin">  
+              <strong>Error!</strong> Username does not exist.
+            </div>
+            <!-- end of alerts -->
+            <div>
+              <form role="form" name="forgotForm" ng-submit="sendPassword(forgotForm) && forgotForm.$valid">
+                <div class="form-group input-group">
+                  <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                  </span>
+                  <input type="email" class="form-control" id="username" placeholder="Email Address" ng-model="forgotForm.username" required autofocus>
+                </div>
+                <div class="form-group input-group">
+                  <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-lock"></i>
+                  </span>
+                  <fieldset disabled>
+                    <input type="password" class="form-control" id="password" placeholder="Disabled" ng-model="forgotForm.password" required>
+                  </fieldset>
+                </div>
+                <button type="submit" class="btn btn-default center-block sign-in">Send</button>
+                <a href="" ng-click="togglePasswordReset()"><p class="forgot text-center">Return to login</p></a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    </div>
+  </body>
+  </html>

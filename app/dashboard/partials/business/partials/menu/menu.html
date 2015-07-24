@@ -1,0 +1,120 @@
+<div>
+	<h3 class="text-center">Menu</h3>
+	<div class="analytics-main">
+		<div class="col-md-12 report-bar">
+			<form class="form-inline">
+				<div class="form-group">
+					<div class="input-group">
+						<div class="input-group-btn" dropdown>
+							<button type="button" class="btn btn-default dropdown-toggle first-dropdown" dropdown-toggle>{{ search.filter.name }}
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<li class="options"><a ng-click="MenuItemsCtrl.setNewFilter('Anything')">Anything</a></li>
+								<li class="options"><a ng-click="MenuItemsCtrl.setNewFilter('Menu Item')">Menu Item</a></li>
+								<li class="options"><a ng-click="MenuItemsCtrl.setNewFilter('Name')">Name</a></li>
+								<li class="options"><a ng-click="MenuItemsCtrl.setNewFilter('Category')">Category</a></li>
+								<li class="options"><a ng-click="MenuItemsCtrl.setNewFilter('Description')">Description</a></li>
+								<li class="options"><a ng-click="MenuItemsCtrl.setNewFilter('Price')">Price</a></li>
+							</ul>
+						</div>
+						<div class="input-group-btn" dropdown>
+							<button type="button" class="btn btn-default dropdown-toggle second-dropdown" dropdown-toggle>{{ search.equivalencyType }}
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<li class="options"><a ng-click="search.equivalencyType = 'Equal to'">Equal to</a></li>
+								<li class="options" ng-show="MenuItemsCtrl.validEquivalencyType()"><a ng-click="search.equivalencyType = 'Less than'">Less than</a></li>
+								<li class="options" ng-show="MenuItemsCtrl.validEquivalencyType()"><a ng-click="search.equivalencyType = 'Greater than'">Greater than</a></li>
+							</ul>
+						</div>
+						<input type="text" class="form-control" placeholder="Search term" ng-model="search.value" size="82">
+					</div>
+				</div>
+				<div class="form-group">
+				    <div class="btn-group" dropdown>
+				      <button type="button" class="btn btn-default dropdown-toggle end" dropdown-toggle>
+				        Add <span class="caret"></span>
+				      </button>
+				      <ul class="dropdown-menu" role="menu">
+				      	<li class="options"><a ng-click="addMenu()">Add Menu</a></li>
+				      	<li class="options"><a ng-click="addMenuCategory()">Add Category</a></li>
+				        <li class="options"><a ng-click="addMenuItem()">Add Item</a></li>
+				        <li class="options"><a ng-click="addItemModifiers()">Add Item Modifiers</a></li>
+				      </ul>
+				    </div>
+				</div>
+				<div class="form-group">
+					<div class="btn-group" ng-show="selectedArray.length === 0" popover="Please select rows to export!" popover-trigger="mouseenter">
+						<button type="button" class="btn btn-default dropdown-toggle end" ng-disabled="true" class="btn btn-default">Export <span class="caret"></span></button>
+					</div>
+				    <div class="btn-group" dropdown ng-hide="selectedArray.length === 0">
+				      <button type="button" class="btn btn-default dropdown-toggle end" dropdown-toggle ng-disabled="!(selectedArray.length > 0)">
+				        Export <span class="caret"></span>
+				      </button>
+				      <ul class="dropdown-menu" role="menu">
+				        <li class="options"><a ng-csv="MenuItemsCtrl.getTableArray()" csv-header="MenuItemsCtrl.getHeaders()" filename="{{ filename }}.csv" field-separator="{{separator}}">To CSV</a></li>
+				      </ul>
+				    </div>
+				</div>
+			</form>
+		</div>
+
+		<div class="clearfix"></div>
+
+		<div class="table-responsive">
+			<table class="table table-bordred table-striped">
+				<thead>
+					<th><input type="checkbox" ng-model="selectedAll" ng-click="MenuItemsCtrl.checkAll()"></th>
+					<th ng-click="MenuItemsCtrl.sortChange('id')" class="pointer">Menu Item
+						<span ng-show="sortType == 'id'" ng-class="{ 'caret-reversed': sortReverse}" class="caret"></span>
+					</th>
+					<th ng-click="MenuItemsCtrl.sortChange('name')" class="pointer">Name
+						<span ng-show="sortType == 'name'" ng-class="{ 'caret-reversed': sortReverse}" class="caret"></span>
+					</th>
+					<th ng-click="MenuItemsCtrl.sortChange('menuCategory.name')" class="pointer">Category
+						<span ng-show="sortType == 'menuCategory.name'" ng-class="{ 'caret-reversed': sortReverse}" class="caret"></span>
+					</th>
+					<th ng-click="MenuItemsCtrl.sortChange('itemDescription')" class="pointer">Description
+						<span ng-show="sortType == 'itemDescription'" ng-class="{ 'caret-reversed': sortReverse}" class="caret"></span>
+					</th>
+					<th ng-click="MenuItemsCtrl.sortChange('price')" class="pointer">Price
+						<span ng-show="sortType == 'price'" ng-class="{ 'caret-reversed': sortReverse}" class="caret"></span>
+					</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</thead>
+				<tbody>
+					<tr dir-paginate="menuItem in filteredMenuItems | orderBy:sortType:sortReverse | itemsPerPage: numEntries">
+						<td><input type="checkbox" ng-model="menuItem.value"></td>
+						<td>{{ menuItem.id }}</td>
+						<td>{{ menuItem.name }}</td>
+						<td>{{ menuItem.menuCategory.name }}</td>
+						<td>{{ menuItem.itemDescription }}</td>
+						<td>${{ menuItem.price }}</td>
+						<td><span class="glyphicon glyphicon-edit pointer" ng-click="editMenuItem(this.menuItem)"></span></td>
+						<td><span class="glyphicon glyphicon-trash alert-danger pointer" ng-click="deleteMenuItem(this.menuItem)"></span></td>
+					</tr>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="clearfix"></div>
+			<p class="pull-left table-details"><b>Total results:</b> {{ filteredMenuItems.length }} </p>
+			<p class="pull-left table-details" ng-show="selectedArray.length > 0">&nbsp;| <b>Selected results:</b> {{ selectedArray.length }}</p>
+			<p class="pull-right table-details">Show
+				<select class="form-control entry-select" ng-model="numEntries">
+					<option>10</option>
+					<option>25</option>
+					<option>50</option>
+					<option>100</option>
+				</select>
+				entries
+			</p>
+			<div class="clearfix"></div>
+			<div class="text-center">
+				<dir-pagination-controls></dir-pagination-controls>
+			</div>	
+		</div>
+	</div>
+</div>

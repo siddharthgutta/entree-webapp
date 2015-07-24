@@ -1,0 +1,128 @@
+/*!
+ * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Toggle Styles */
+
+#wrapper {
+    padding-left: 0px;
+}
+
+#wrapper.toggled {
+    padding-left: 200px;
+}
+
+#sidebar-wrapper {
+    margin-top: -72px;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #FFF;
+    border-right: 1px solid #ccc;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 94px;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 40px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    border-left: 4px solid transparent;
+    display: block;
+    text-decoration: none;
+    color: #9d9d9d;
+
+    -webkit-transition: color 150ms ease;
+    -moz-transition: color 150ms ease;
+    -o-transition: color 150ms ease;
+    -ms-transition: color 150ms ease;
+    transition: color 150ms ease;
+}
+
+.sidebar-nav li a:hover,
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    color: #333;
+}
+
+.sidebar-nav li .active {
+    color: #333;
+    border-left: 4px solid #333;
+}
+
+.sidebar-header {
+    margin-top: 20px;
+    margin-left: 44px;
+}
+
+@media(min-width:768px) {
+    #content {
+        padding-left: 225px;
+        padding-top: 20px;
+        padding-bottom: 16px;
+    }
+
+    #wrapper {
+        padding-left: 150px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 225px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+
+@media(max-width:768px) {
+    #content {
+        padding: 30px 15px;
+        text-align: center;
+    }
+}

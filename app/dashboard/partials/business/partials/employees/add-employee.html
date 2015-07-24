@@ -1,0 +1,44 @@
+<h3 class="text-center">Add Employee</h3>
+<div class="analytics-main col-md-offset-2 col-md-8">
+    <div ng-show="formSubmit">
+        <div id="formAlert" class="alert alert-success text-center" ng-show="formSubmit && formSuccess">  
+          <strong>Success!</strong> Employee has been added.
+        </div>
+        <div id="formAlert" class="alert alert-danger text-center" ng-show="formSubmit && !formSuccess">  
+            <strong>Error!</strong> Please fill out form again.
+        </div>
+    </div>
+    <form role="form">
+        <div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Name" ng-model="addEmployeeForm.employeeName" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="role" name="role" placeholder="Role" ng-model="addEmployeeForm.employeeRole" required>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input type="text" class="form-control" id="wage" name="wage" placeholder="Wage" ng-model="addEmployeeForm.employeeWage" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <select class="form-control" ng-model="addEmployeeForm.administrator" required>
+                    <option value="" disabled selected>Administrator</option>
+                    <option value=true>Yes</option>
+                    <option value=false>No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="pin-code" name="pin-code" placeholder="Pin Code" ng-model="addEmployeeForm.employeePinCode" required>
+            </div>
+            <div class="form-group">
+                <input type="date" class="form-control" datepicker-popup ng-model="addEmployeeForm.employeeStartDate" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+            </div>
+            <div class="text-center">
+                <button type="button" class="btn btn-danger" ng-click="cancelEmployee()">Cancel</button>
+                <button type="button" id="submit" name="submit" class="btn btn-default" ng-click="createEmployee()">Create</button>
+            </div>
+        </div>
+    </form>
+</div>

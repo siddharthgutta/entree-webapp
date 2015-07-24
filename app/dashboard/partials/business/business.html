@@ -1,0 +1,25 @@
+<!-- Sidebar -->
+<div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <h6 class="sidebar-header">BUSINESS</h6>
+        <li>
+            <a ng-class="{ active: isActive('/dashboard/business/menu') || isActive('/dashboard/business/menu/add-item') }" ui-sref="dashboard.business.menu">Menu</a>
+        </li>              
+        <li>
+            <a ng-class="{ active: isActive('/dashboard/business/employees') || isActive('/dashboard/business/empolyees/add-employee') }" ui-sref="dashboard.business.employees">Employees</a>
+        </li>
+    </ul>
+</div>
+<!-- /#sidebar-wrapper -->
+
+<!-- Page Content -->
+<div id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-centered">
+                <div ui-view autoscroll="false"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /#page-content-wrapper -->

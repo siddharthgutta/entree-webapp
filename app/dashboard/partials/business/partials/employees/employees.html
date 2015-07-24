@@ -1,0 +1,117 @@
+<div>
+	<h3 class="text-center">Employees</h3>
+	<div class="analytics-main">
+		<div class="col-md-12 report-bar">
+			<form class="form-inline">
+				<div class="form-group">
+					<div class="input-group">
+						<div class="input-group-btn" dropdown>
+							<button type="button" class="btn btn-default dropdown-toggle first-dropdown" dropdown-toggle>{{ search.filter.name }}
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<li class="options"><a ng-click="EmployeesCtrl.setNewFilter('Anything')">Anything</a></li>
+								<li class="options"><a ng-click="EmployeesCtrl.setNewFilter('Name')">Name</a></li>
+								<li class="options"><a ng-click="EmployeesCtrl.setNewFilter('Active Party Count')">Active Party Count</a></li>
+								<li class="options"><a ng-click="EmployeesCtrl.setNewFilter('Role')">Role</a></li>
+								<li class="options"><a ng-click="EmployeesCtrl.setNewFilter('Hourly Wage')">Hourly Wage</a></li>
+							</ul>
+						</div>
+						<div class="input-group-btn" dropdown>
+							<button type="button" class="btn btn-default dropdown-toggle second-dropdown" dropdown-toggle>{{ search.equivalencyType }}
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<li class="options"><a ng-click="search.equivalencyType = 'Equal to'">Equal to</a></li>
+								<li class="options" ng-show="EmployeesCtrl.validEquivalencyType()"><a ng-click="search.equivalencyType = 'Less than'">Less than</a></li>
+								<li class="options" ng-show="EmployeesCtrl.validEquivalencyType()"><a ng-click="search.equivalencyType = 'Greater than'">Greater than</a></li>
+							</ul>
+						</div>
+						<input type="text" class="form-control" placeholder="Search term" ng-model="search.value" size="82">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="btn-group" dropdown>
+				      <button type="button" class="btn btn-default dropdown-toggle end" dropdown-toggle>
+				        Add <span class="caret"></span>
+				      </button>
+				      <ul class="dropdown-menu" role="menu">
+				        <li class="options"><a ng-click="addEmployee()">Add Employee</a></li>
+				      </ul>
+				    </div>
+				</div>
+				<div class="form-group">
+					<div class="btn-group" ng-show="selectedArray.length === 0" popover="Please select rows to export!" popover-trigger="mouseenter" class="btn btn-default">
+						<button type="button" class="btn btn-default dropdown-toggle" ng-disabled="true" class="btn btn-default">Export <span class="caret"></span></button>
+					</div>
+				    <div class="btn-group" dropdown ng-hide="selectedArray.length === 0">
+						<button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="!(selectedArray.length > 0)" class="btn btn-default">Export <span class="caret"></span></button>
+						<ul class="dropdown-menu" role="menu">
+							<li class="options"><a ng-csv="EmployeesCtrl.getTableArray()" csv-header="EmployeesCtrl.getHeaders()" filename="{{ filename }}.csv" field-separator="{{separator}}">To CSV</a></li>
+						</ul>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<div class="clearfix"></div>
+
+		<div class="table-responsive">
+			<table class="table table-bordred table-striped">
+				<thead>
+					<th><input type="checkbox" ng-model="selectedAll" ng-click="EmployeesCtrl.checkAll()"></th>
+					<th ng-click="EmployeesCtrl.sortChange('id')" class="pointer">Employee
+						<span ng-show="sortType == 'id'" ng-class="{ 'caret-reversed': sortReverse}" class="caret"></span>
+					</th>
+					<th ng-click="EmployeesCtrl.sortChange('name')" class="pointer">Name
+						<span ng-show="sortType == 'name'" ng-class="{ 'caret-reversed': sortReverse}" class="caret"></span>
+					</th>
+					<th ng-click="EmployeesCtrl.sortChange('activePartyCount')" class="pointer">Active Party Count
+						<span ng-show="sortType == 'activePartyCount'" ng-class="{ 'caret-reversed': sortReverse}" class="caret"></span>
+					</th>
+					<th ng-click="EmployeesCtrl.sortChange('role')" class="pointer">Role
+						<span ng-show="sortType == 'role'" ng-class="{ 'caret-reversed': sortReverse}" class="caret"></span>
+					</th>
+					<th ng-click="EmployeesCtrl.sortChange('hourlyWage')" class="pointer">Hourly Wage
+						<span ng-show="sortType == 'hourlyWage'" ng-class="{ 'caret-reversed': sortReverse}" class="caret"></span>
+					</th>
+					<th ng-click="EmployeesCtrl.sortChange('startDate')" class="pointer">Start Date
+						<span ng-show="sortType == 'startDate'" ng-class="{ 'caret-reversed': sortReverse}" class="caret"></span>
+					</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</thead>
+				<tbody>
+					<tr dir-paginate="employee in filteredEmployees | orderBy:sortType:sortReverse | itemsPerPage: numEntries">
+						<td><input type="checkbox" ng-model="employee.value"></td>
+						<td>{{ employee.id }}</td>
+						<td>{{ employee.name }}</td>
+						<td>{{ employee.activePartyCount }}</td>
+						<td>{{ employee.role }}</td>
+						<td>${{ employee.hourlyWage }}</td>
+						<td>{{ employee.startDate | date: 'short' }}</td>
+						<td><span class="glyphicon glyphicon-edit pointer" ng-click="editEmployee(this.employee)"></span></td>
+						<td><span class="glyphicon glyphicon-trash alert-danger pointer" ng-click="deleteEmployee(this.employee)"></span></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="clearfix"></div>
+			<p class="pull-left table-details"><b>Total results:</b> {{ filteredEmployees.length }} </p>
+			<p class="pull-left table-details" ng-show="selectedArray.length > 0">&nbsp;| <b>Selected results:</b> {{ selectedArray.length }}</p>
+			<p class="pull-right table-details">Show
+				<select class="form-control entry-select" ng-model="numEntries">
+					<option>10</option>
+					<option>25</option>
+					<option>50</option>
+					<option>100</option>
+				</select>
+				entries
+			</p>
+			<div class="clearfix"></div>
+			<div class="text-center">
+				<dir-pagination-controls></dir-pagination-controls>
+			</div>	
+		</div>
+	</div>
+</div>
