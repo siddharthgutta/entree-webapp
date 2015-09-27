@@ -9,12 +9,12 @@ angular.module('analytics-app.dashboard.reporting.orders.data-table', [
 		$scope.orders = [];
 
 		$scope.sortType		= 'createdAt';	//default sort type
-		$scope.sortReverse	= false;		//default order   					
+		$scope.sortReverse	= false;		//default order
 
 		$scope.selectedAll = false;			//select all checkbox
 
 		//csv
-		$scope.separator 	= ","; 
+		$scope.separator 	= ",";
 		$scope.filename 	= "orders-report";
 	    $scope.filteredOrders = [];		//may or may not be filtered
 	    $scope.selectedArray = [];			//checked items
@@ -62,7 +62,7 @@ angular.module('analytics-app.dashboard.reporting.orders.data-table', [
 			partyQuery.equalTo("restaurant", $scope.currentRestaurant);
 			partyQuery.greaterThanOrEqualTo("createdAt", $scope.startDate);
 			partyQuery.lessThanOrEqualTo("createdAt", $scope.endDate);
-			
+
 			partyQuery.find().then(function(parties) {
 				for(var i = 0; i < parties.length; i++) {
 					var Order = Parse.Object.extend("Order");
@@ -76,19 +76,19 @@ angular.module('analytics-app.dashboard.reporting.orders.data-table', [
 						return this.get("name");
 					});
 
-					Order.prototype.__defineGetter__("menuItem", function() {
+					OrderItem.prototype.__defineGetter__("menuItem", function() {
 						return this.get("menuItem");
 					});
-					Order.prototype.__defineGetter__("menuItemModifiers", function() {
+					OrderItem.prototype.__defineGetter__("menuItemModifiers", function() {
 						return this.get("menuItemModifiers");
 					});
 					Order.prototype.__defineGetter__("party", function() {
 						return this.get("party");
 					});
-					Order.prototype.__defineGetter__("seat", function() {
+					OrderItem.prototype.__defineGetter__("seat", function() {
 						return this.get("seat");
 					});
-					Order.prototype.__defineGetter__("notes", function() {
+					OrderItem.prototype.__defineGetter__("notes", function() {
 						return this.get("notes");
 					});
 
